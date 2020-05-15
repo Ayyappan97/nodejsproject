@@ -1,0 +1,59 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+  <div class="row">
+	  <div class="col-lg-4 col-xs-12">
+			<h5 class="pt-3">
+				Photo Gallery
+		 </h5>  
+		 <div class="list-group">
+				<li class="list-group-item active">Category-1</li>
+				<li class="list-group-item">Category-2</li>
+				<li class="list-group-item">Category-3</li>
+		 </div>
+	  </div>
+		<div class="col-lg-8 col-xs-12">
+			<img class="img-thumbnail pt-2" src= "<%=campaign.img %>">
+			<h5><%=campaign.name%></h5>
+			 <P><%= campaign.discription%></P>	
+			<p>
+				<strong>Submitted by :<%=campaign.author.username %></strong>
+			</p>
+			<%if(currentUser && campaign.author.id.equals(currentUser._id)){%>
+			<button class="btn btn-warning btn-sm">
+				<a href="/shownew/<%=campaign._id%>/edit">EDIT</a>
+			</button>
+			<form id="delete-form" action="/shownew/<%=campaign._id%>?_method=delete" method="post">
+		     <button class="btn btn-danger btn-sm">DELETE</button>
+			</form>
+			<%}%>
+			
+			<div class="card bg-light mt-2">
+				<div class="card-body">
+					<a class="btn btn-success" href="/shownew/<%= campaign._id %>/comments/new">Add comments</a>
+					<% campaign.comments.forEach(function(comment){ %>
+					<hr>
+			<div class="row">
+				<div class="col-xs-12">
+					  <p class="text"><%=comment.text %>-<strong><%=comment.author.username%></strong></p>
+					<%if(currentUser && comment.author.id.equals(currentUser._id)){%>
+					<button class="btn btn-warning btn-sm">
+					  <a href="/shownew/<%=campaign._id%>/comments/<%=comment._id%>/edit">EDIT</a>
+					</button>
+	<form id="remove-form" action="/shownew/<%=campaign._id%>/comments/<%=comment._id%>/delete?_method=delete" method="post">
+						<button class="btn btn-danger btn-sm">
+							DELETE
+						</button>
+		      <%}%>
+					</form>
+					 </div>	 
+	        </div>
+             <%})%>
+				
+			
+				</div>
+			</div>
+		 </div>         
+	</div>        
+</div>
+<%- include("../partials/footer") %>

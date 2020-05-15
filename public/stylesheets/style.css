@@ -1,0 +1,20 @@
+.img-thumbnail{
+	width:100%;
+	padding:0;
+}
+ 
+.text{
+	padding:9px;
+}
+.bg-custom{
+	background:black;
+	font-family:serif;
+}
+
+#delete-form{
+	display:inline;
+}
+
+#remove-form{
+	display:inline;
+}

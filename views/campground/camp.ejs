@@ -1,0 +1,28 @@
+<%- include("../partials/header") %>
+
+
+<div class="container">	
+	
+<header class="jumbotron mt-3">
+	<div class="container">
+		<h1>welcome to photography page!!</h1>
+		<p>Here we have some of the handpicked images from all around the world </p>
+	<P><a class="btn-primary btn-lg" href="/newcamp">Add new images</a></P>
+	</div>	
+</header>
+	
+	<div class="row">
+		 <% camp.forEach(function(campaign){ %>
+		<div class="col-md-3 col-sm-6">
+				 <img class="img-thumbnail m-3" src="<%=campaign.img%>" alt="image cap"> 
+			<h5 class="text-center"><%=campaign.name %></h5>
+			<div class="text-center m-4">
+				<a href="/shownew/<%=campaign._id%>" class="btn btn-primary btn-sm">More-Info</a>
+			</div>
+			 
+		</div>   
+     <%});%>
+		</div>
+</div>		
+  
+<%- include("../partials/footer") %>
